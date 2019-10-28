@@ -15,10 +15,10 @@ def loggen():
     os = ["windows", "macOS.system", "ubuntu", "linux", "android", "iOS"]
     rand_field = '"field_{index}":"same_value"'.format(index=(randint(21, 40)))
     bands = ["nirvana", "beatles", "queen", "kaveret", "ac_dc", "tallest_man_on_earth", "hiss_golden_messanger",
-            "eminem", "snoop_dog", "led_zepplin"]
-    log = '{{"message": "{message}", "type": "demo_logs", "host": "{host}", "quantity": {qty}, "IP_Address": "{ip}", "bands": "{bands}", "operating.system": "{opsys}", {random_field}'.format(
-        message=choice(mes_list), host=choice(host), qty=quantity, ip=choice(ipAddress), bands=choice(bands), opsys=choice(os),
-        random_field=rand_field)
+            "eminem", "snoop_dog", "led_zepplin", "red,comma"]
+    logLevel = ["WARN", "INFO", "DEBUG", "ERROR"]
+    log = '{{"message": "{message}", "type": "demo_logs", "host": "{host}", "logLevel": "{logLevel}", "quantity": {qty}, "IP_Address": "{ip}", "bands": "{bands}", "operating.system": "{opsys}", {random_field}'.format(
+        message=choice(mes_list), host=choice(host), qty=quantity, ip=choice(ipAddress), bands=choice(bands), opsys=choice(os), logLevel=choice(logLevel), random_field=rand_field)
     final_log = log + '}'
 
     return final_log
@@ -26,7 +26,7 @@ def loggen():
 
 if __name__ == '__main__':
     x = randint(20,300)
-    accountUrl = "http://listener-wa.logz.io:8070/?token=ibaktSjlQCowwFKuIQnegzdLQiucLGsb&type=logGen"
+    accountUrl = "http://listener.logz.io:8070/?token=CQmkmIksjWVlxCdDFpFTFGwgXHrIajfO&type=logGen"
     data = ''
     for count in range(0, x):
         data = '{}\n{}'.format(data, loggen())
@@ -35,6 +35,3 @@ if __name__ == '__main__':
     print(response)
     print("Number of log lines generated:" + str(x))
     print("Log output sample: " + loggen())
-
-# NuEHNMvOvCgqGCEllblTPUsUqfgAMhbp (pv_us_stg)
-# +ygNIHjBSlaZarCAAmhyAEFOIlqceoVfR (kibana526)
