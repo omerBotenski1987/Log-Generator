@@ -40,7 +40,7 @@ def loggen():
 
 if __name__ == '__main__':
     x = randint(200,400)
-    accountUrl = "http://listener-nl.logz.io:8070/?token=iNGyiknBfogAqWMfOpmCXlXcBIhOOnGV&type=logGenManual"
+    accountUrl = "http://listener-nl.logz.io:8070/?token=<ACCOUNT_TOKEN>&type=logGenManual"
     data = ''
     for count in range(0, x):
         data = '{}\n{}'.format(data, loggen())
