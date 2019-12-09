@@ -1,5 +1,6 @@
 from random import randint, choice
 import requests
+import json
 
 
 def loggen():
@@ -16,16 +17,29 @@ def loggen():
     rand_field = '"field_{index}":"same_value"'.format(index=(randint(21, 40)))
     bands = ["nirvana", "beatles", "queen", "kaveret", "ac_dc", "tallest_man_on_earth", "hiss_golden_messanger",
             "eminem", "snoop_dog", "led_zepplin"]
-    log = '{{"message": "{message}", "type": "demo_logs", "host": "{host}", "quantity": {qty}, "IP_Address": "{ip}", "bands": "{bands}", "operating.system": "{opsys}", {random_field}'.format(
-        message=choice(mes_list), host=choice(host), qty=quantity, ip=choice(ipAddress), bands=choice(bands), opsys=choice(os),
-        random_field=rand_field)
+    logLevel = ["WARN", "INFO", "DEBUG", "ERROR"]
+    logzio_security = {
+      "severity": 5,
+      "origin_feeds": [
+        "dan.me.uk - Tor tracker"
+      ],
+      "context": [
+        "Malicious IP"
+      ],
+      "ioc": {
+        "malicious_ip": "231.122.87.139"
+      },
+      "origin_feeds_num": 1
+    }
+    log = '{{"message": "{message}", "type": "demo_logs", "host": "{host}", "logLevel": "{logLevel}", "quantity": {qty}, "IP_Address": "{ip}", "bands": "{bands}", "operating.system": "{opsys}", "logzio_security_2": {logzio_security}, {random_field}'.format(
+        message=choice(mes_list), host=choice(host), qty=quantity, ip=choice(ipAddress), bands=choice(bands), opsys=choice(os), logLevel=choice(logLevel), logzio_security=json.dumps(logzio_security), random_field=rand_field)
     final_log = log + '}'
 
     return final_log
 
 
 if __name__ == '__main__':
-    x = randint(20, 300)
+    x = randint(20,300)
     accountUrl = "http://listener.preproduction.us-east-1.internal.logz.io:8070/?token=oMQnFDlLkpuYYzDNVCyCOsMOgtUjmVHo&type=subCronLogs"
     data = ''
     for count in range(0, x):
