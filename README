@@ -1,5 +1,7 @@
 README
 
+Base script - logGenShip.py
+
 Use python3 
 
 In order to activate these scripts, you need to use python3 and the log shipping page under libraries >> HTTP Bulk
